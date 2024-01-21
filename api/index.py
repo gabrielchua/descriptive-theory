@@ -4,9 +4,9 @@ main.py
 import os
 from typing import Optional
 
-from fastapi import FastAPI
-from pydantic import BaseModel, Field
+from flask import Flask
 from openai import OpenAI
+from pydantic import BaseModel, Field
 
 DEFAULT_SYSTEM_MESSAGE = "You are a friendly doctor. "\
             "Please simplify the given medical report in plain English. "\
@@ -17,7 +17,7 @@ DEFAULT_SYSTEM_MESSAGE = "You are a friendly doctor. "\
             "Never add emojis or code snippets. "
 
 # Initialise fastapi and openai client
-app = FastAPI()
+app = Flask(__name__)
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 # Model for the simplify-text endpoint
@@ -32,7 +32,7 @@ class SimplifyTextRequest(BaseModel):
     language: str = Field(pattern=r'^(english|chinese)$', default="english")
 
 # GET endpoint to serve as a GET ping
-@app.get("/")
+@app.route("/")
 def ping():
     """
     Endpoint to check if the server is running.
@@ -47,7 +47,7 @@ def ping():
             }
 
 # POST endpoint to simplify text
-@app.post("/simplify-text")
+@app.route("/simplify-text")
 def simplify_text(request: SimplifyTextRequest):
     """
     Endpoint to simplify the given text based on the specified language.
