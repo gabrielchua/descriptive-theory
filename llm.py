@@ -1,10 +1,13 @@
 """
 llm.py
 """
+import os
 from typing import Optional
 from openai import OpenAI
 
-client = OpenAI()
+client = OpenAI(
+    api_key=os.environ["OPENAI_API_KEY"]
+)
 
 DEFAULT_SYSTEM_MESSAGE = "You are a friendly doctor. "\
             "Your task is to simplify the given medical report for the patient by "\
