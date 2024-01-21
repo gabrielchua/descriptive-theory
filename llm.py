@@ -5,6 +5,8 @@ import os
 from typing import Optional
 from openai import OpenAI
 
+print(os.environ)
+
 client = OpenAI(
     api_key=os.environ["OPENAI_API_KEY"]
 )
