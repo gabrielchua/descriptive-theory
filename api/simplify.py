@@ -33,7 +33,7 @@ class SimplifyTextRequest(BaseModel):
 
 # GET endpoint to serve as a GET ping
 @app.get("/")
-async def ping():
+def ping():
     """
     Endpoint to check if the server is running.
     GET request to this endpoint will return a JSON response with a message
@@ -48,7 +48,7 @@ async def ping():
 
 # POST endpoint to simplify text
 @app.post("/simplify-text")
-async def simplify_text(request: SimplifyTextRequest):
+def simplify_text(request: SimplifyTextRequest):
     """
     Endpoint to simplify the given text based on the specified language.
     It accepts a JSON payload conforming to the SimplifyTextRequest model.
