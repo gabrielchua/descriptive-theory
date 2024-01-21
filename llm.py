@@ -5,18 +5,15 @@ import os
 from typing import Optional
 from openai import OpenAI
 
-print(os.environ)
-
 client = OpenAI(
     api_key=os.environ["OPENAI_API_KEY"]
 )
 
 DEFAULT_SYSTEM_MESSAGE = "You are a friendly doctor. "\
-            "Your task is to simplify the given medical report for the patient by "\
-            "writing it in plain English. "\
-            "Explain the significance of the findings, and if they are not serious or common, "\
+            "Please simplify the given medical report in plain English. "\
+            "Explain the findings, and if they are not serious, "\
             "assure the patient. "\
-            "Be succicnt, and do not use technical terms that someone without a "\
+            "Be succicnt, and do not use technical terms someone without a "\
             "medical or life science degree would not understand. "\
             "Never add emojis or code snippets. "
 
