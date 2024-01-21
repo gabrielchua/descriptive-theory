@@ -2,6 +2,9 @@
   "functions": {
     "api/main.py": {
       "maxDuration": 30
+    },
+    "api/llm.py": {
+      "maxDuration": 30
     }
   }
 }
