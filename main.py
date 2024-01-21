@@ -29,7 +29,9 @@ async def ping():
     Returns:
         JSON response with a server status message.
     """
-    return {"message": "Server is up and running"}
+    return {"code": 200,
+            "message": "Server is up and running"
+            }
 
 # POST endpoint to simplify text
 @app.post("/simplify-text")
@@ -44,6 +46,16 @@ async def simplify_text(request: SimplifyTextRequest):
     Returns:
         JSON response with the simplified text.
     """
-    simplified_text = simplify(original_message=request.text,
+    simplified_report = simplify(original_message=request.text,
                                language=request.language)
-    return {"simplified-text": simplified_text}
+    
+    if simplified_report:
+        simplified_text = "Hello - here is the report from today's visit: " + simplified_report
+        return {"code": 200,
+                "message": {"simplified_text": simplified_text}
+                }
+    
+    else:
+        return {"code": 500,
+                "message": "Unexpected error."
+                }
