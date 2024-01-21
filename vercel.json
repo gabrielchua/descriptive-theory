@@ -1,6 +1,9 @@
 {
   "functions": {
-    "api/index.py": {
+    "api/ping.py": {
+      "maxDuration": 10
+    },
+    "api/simplify.py": {
       "maxDuration": 30
     }
   }
